@@ -1,0 +1,44 @@
+# Generated applications and build state (may contain local paths)
+.build/
+dist/
+.swiftpm/
+DerivedData/
+*.app/
+*.dSYM/
+*.xcarchive/
+xcuserdata/
+*.xcuserstate
+
+# Machine, editor, agent and cloud configuration
+.DS_Store
+._*
+.idea/
+.vscode/
+.codex/
+.agents/
+.aws/
+.ssh/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.mobileprovision
+
+# Runtime data, diagnostics and personal screenshots
+Transfers/
+shelf.json
+*.log
+*.crash
+*.ips
+__pycache__/
+*.py[cod]
+截屏*.png
+截屏*.jpg
+截屏*.jpeg
+Screenshot*.png
+Screenshot*.jpg
+Screenshot*.jpeg
+Screen Shot*.png
