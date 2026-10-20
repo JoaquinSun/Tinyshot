@@ -59,6 +59,14 @@ python3 scripts/export-source.py
 
 ## 后续应用发布
 
-修改版本时同步更新 `Resources/Info.plist` 中的显示版本与构建号。当前脚本只生成构建机器架构的临时本地签名应用，尚未提供 Developer ID 签名、公证或通用二进制包。
+修改版本时同步更新 `Resources/Info.plist` 中的显示版本与构建号。普通 `build.sh` 生成本机架构应用，公开应用包使用：
+
+```sh
+python3 scripts/package-release.py
+```
+
+此脚本分别构建 arm64 与 x86_64，合并为通用二进制，移除调试信息、映射构建路径，完成本地签名与验证，再扫描应用包中的个人路径和凭据。输出 `dist/TinyShot-v版本号-universal.zip` 及 `dist/SHA256SUMS.txt`。包内只含应用、安装说明与 MIT 许可证，不复制本机已有应用或运行数据。尚未提供 Developer ID 签名与 Apple 公证。
+
+确认源码已提交、CI 通过后，用对应提交创建 `v版本号` 标签，先创建 GitHub Release 草稿并上传 ZIP 和校验文件，核对资产大小与校验值后再发布。说明中应包含系统要求、签名/公证状态、安装方法及直接删除原图的行为；可参照 `docs/releases/` 中的说明。
 
 GitHub Actions 使用 macOS 26 和指定 Xcode 26 工具链执行扫描、测试及构建，只读仓库内容，不自动上传应用或发布 Release。首次上传后需在 GitHub 检查实际 CI 结果；本地通过不等于远端已通过。

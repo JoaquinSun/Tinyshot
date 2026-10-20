@@ -28,3 +28,5 @@ jobs:
         run: zsh scripts/test.sh
       - name: Build application
         run: zsh scripts/build.sh
+      - name: Verify universal release package
+        run: python3 scripts/package-release.py
